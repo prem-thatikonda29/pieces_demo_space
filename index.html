@@ -43,12 +43,27 @@
         button:hover {
             background-color: #357ab8;
         }
+        #spinner {
+            display: none;
+            margin: 20px 0;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
     <h1>Space Facts</h1>
     <div id="fact"></div>
+    <div id="spinner"></div>
     <button onclick="generateFact()">Generate Fact</button>
 
     <script>
@@ -66,8 +81,21 @@
         ];
 
         function generateFact() {
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            document.getElementById('fact').textContent = facts[randomIndex];
+            const spinner = document.getElementById('spinner');
+            const factDiv = document.getElementById('fact');
+            
+            // Show spinner
+            spinner.style.display = 'block';
+            factDiv.textContent = '';
+
+            // Simulate a delay for loading
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * facts.length);
+                factDiv.textContent = facts[randomIndex];
+                
+                // Hide spinner
+                spinner.style.display = 'none';
+            }, 1000); // 1 second delay
         }
 
         // Generate the first fact on page load

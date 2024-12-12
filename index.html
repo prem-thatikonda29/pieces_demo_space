@@ -7,53 +7,71 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: #fff;
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         h1 {
             text-align: center;
             color: #4a90e2;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 15px;
+        #fact {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ab8;
         }
     </style>
 </head>
 <body>
 
     <h1>Space Facts</h1>
-    <ul id="facts-list"></ul>
+    <div id="fact"></div>
+    <button onclick="generateFact()">Generate Fact</button>
 
     <script>
         const facts = [
-            { "fact": "Space is completely silent because there is no atmosphere to carry sound." },
-            { "fact": "The hottest planet in our solar system is Venus, with surface temperatures around 465°C (869°F)." },
-            { "fact": "A day on Venus is longer than a year on Venus due to its slow rotation." },
-            { "fact": "There are more stars in the universe than grains of sand on all the Earth's beaches." },
-            { "fact": "Neutron stars can spin at a rate of 600 rotations per second." },
-            { "fact": "The largest volcano in the solar system is Olympus Mons on Mars, which is about 13.6 miles (22 kilometers) high." },
-            { "fact": "Jupiter's Great Red Spot is a giant storm that has been raging for at least 350 years." },
-            { "fact": "A year on Mercury is just 88 Earth days long." },
-            { "fact": "The Milky Way galaxy is approximately 100,000 light-years in diameter." },
-            { "fact": "Black holes are regions of space where gravity is so strong that nothing, not even light, can escape from them." }
+            "Space is completely silent because there is no atmosphere to carry sound.",
+            "The hottest planet in our solar system is Venus, with surface temperatures around 465°C (869°F).",
+            "A day on Venus is longer than a year on Venus due to its slow rotation.",
+            "There are more stars in the universe than grains of sand on all the Earth's beaches.",
+            "Neutron stars can spin at a rate of 600 rotations per second.",
+            "The largest volcano in the solar system is Olympus Mons on Mars, which is about 13.6 miles (22 kilometers) high.",
+            "Jupiter's Great Red Spot is a giant storm that has been raging for at least 350 years.",
+            "A year on Mercury is just 88 Earth days long.",
+            "The Milky Way galaxy is approximately 100,000 light-years in diameter.",
+            "Black holes are regions of space where gravity is so strong that nothing, not even light, can escape from them."
         ];
 
-        const factsList = document.getElementById('facts-list');
-        facts.forEach(fact => {
-            const listItem = document.createElement('li');
-            listItem.textContent = fact.fact;
-            factsList.appendChild(listItem);
-        });
+        function generateFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('fact').textContent = facts[randomIndex];
+        }
+
+        // Generate the first fact on page load
+        generateFact();
     </script>
 
 </body>
